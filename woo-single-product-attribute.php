@@ -9,7 +9,7 @@
  * Author URI: http://mahmudhaisan.com/
  * Developer: Mahmud Haisan
  * Developer URI: http://mahmudhaisan.com/
- * Text Domain: woo-single-product-attribute
+ * Text Domain: woospa
  * Domain Path: /languages
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -61,3 +61,80 @@ function wooattr_add()
         echo '</pre>';
     endforeach;
 }
+
+
+function woospa_scripts()
+{
+    wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css');
+    wp_enqueue_script('script-name', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array(), '1.0.0', true);
+}
+
+add_action('wp_enqueue_scripts', 'woospa_scripts');
+
+
+?>
+
+
+
+<!-- html content starts -->
+<div class="jumbotron">
+    <div class="row w-100">
+        <div class="col-md-3">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="text-info text-center mt-3">
+                    <h4>Attribute Name</h4>
+                </div>
+                <div class="text-info text-center mt-2">
+                    <ul>
+                        <li>value</li>
+                        <li>value</li>
+                        <li>value</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="text-info text-center mt-3">
+                    <h4>Attribute Name</h4>
+                </div>
+                <div class="text-info text-center mt-2">
+                    <ul>
+                        <li>value</li>
+                        <li>value</li>
+                        <li>value</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="text-info text-center mt-3">
+                    <h4>Attribute Name</h4>
+                </div>
+                <div class="text-info text-center mt-2">
+                    <ul>
+                        <li>value</li>
+                        <li>value</li>
+                        <li>value</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="text-info text-center mt-3">
+                    <h4>Attribute Name</h4>
+                </div>
+                <div class="text-info text-center mt-2">
+                    <ul>
+                        <li>value</li>
+                        <li>value</li>
+                        <li>value</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
