@@ -46,7 +46,11 @@ function wooattr_add()
     // getting attributes and looping all available attribute
     $attributes = $product->get_attributes();
 
-    //for each loop starts
+    //for each loop starts        
+    echo '<div class="jumbotron">';
+    echo '<div class="row w-100">';
+
+
     foreach ($attributes as $attribute) {
         $attribute_name = $attribute->get_taxonomy();
         $attribute_terms = $attribute->get_terms();
@@ -56,41 +60,43 @@ function wooattr_add()
         $attribute_name_get = ($attribute_data['name']);
         $attr_prefix_remove = explode('pa_', $attribute_name_get);
         $attr_after_explode = $attr_prefix_remove[1];
-        echo $attr_after_explode;
 
-        //attribute terms
-        echo ' terms ';
-        print_r($attribute_terms);
-        echo '</pre>';
+        echo '<div class="col-md-3">';
+
+
+
 
 
 
 ?>
 
-        <div class="jumbotron">
-            <div class="row w-100">
-                <div class="col-md-3">
-                    <div class="card border-info mx-sm-1 p-3">
-                        <div class="text-info text-center mt-3">
-                            <h4><?php echo ($attr_after_explode); ?></h4>
-                        </div>
-                        <div class="text-info text-center mt-2">
-                            <?php
-                            foreach ($attribute_terms as $value) { ?>
-                                <ul>
-                                    <?php echo $value->name; ?>
-                                </ul>
-                            <?php } ?>
-                        </div>
-                    </div>
-                </div>
+
+
+        <div class="card border-info mx-sm-1 p-3">
+            <div class="text-info text-center mt-3">
+                <h4><?php echo ($attr_after_explode); ?></h4>
+            </div>
+            <div class="text-info text-center mt-2">
+                <?php
+                foreach ($attribute_terms as $value) { ?>
+                    <ul>
+                        <?php echo $value->name; ?>
+                    </ul>
+                <?php } ?>
             </div>
         </div>
+        </div>
+
+
+
+    <?php
+    } ?>
+
+    </div>
+    </div>
 
 <?php
 
-
-    }
 }
 
 
