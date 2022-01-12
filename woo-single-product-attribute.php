@@ -48,46 +48,25 @@ function wooattr_add()
 
     //for each loop starts
     foreach ($attributes as $attribute) {
-        $attribute_name = $attribute->get_taxonomy(); // The taxonomy slug name
-        $attribute_terms = $attribute->get_terms(); // The terms
-        $attribute_slugs = $attribute->get_slugs(); // The term slugs
+        $attribute_name = $attribute->get_taxonomy();
+        $attribute_terms = $attribute->get_terms();
+        $attribute_slugs = $attribute->get_slugs();
         $attribute_data = $attribute->get_data();
 
-        // testing pre-formatted output
-        // echo '<pre>';
-        // echo 'data ';
-
-        // print_r($attribute_data); //
         $attribute_name_get = ($attribute_data['name']);
         $attr_prefix_remove = explode('pa_', $attribute_name_get);
         $attr_after_explode = $attr_prefix_remove[1];
         echo $attr_after_explode;
 
-
-        // echo ' attr ';
-
-        // echo 'slugs ';
-        // print_r($attribute_slugs);
-        // echo 'name ';
-        // print_r($attribute_name, ' ');
-
+        //attribute terms
         echo ' terms ';
         print_r($attribute_terms);
         echo '</pre>';
-
-        foreach ($attribute_terms as $value) {
-            $li_item = '';
-            echo $value->name;
-        }
-
-
 
 
 
 ?>
 
-
-        <!-- html content starts -->
         <div class="jumbotron">
             <div class="row w-100">
                 <div class="col-md-3">
@@ -96,10 +75,12 @@ function wooattr_add()
                             <h4><?php echo ($attr_after_explode); ?></h4>
                         </div>
                         <div class="text-info text-center mt-2">
-                            <ul>
-                                <li><?php echo $value->name; ?></li>
-
-                            </ul>
+                            <?php
+                            foreach ($attribute_terms as $value) { ?>
+                                <ul>
+                                    <?php echo $value->name; ?>
+                                </ul>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
