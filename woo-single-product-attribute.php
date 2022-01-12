@@ -20,9 +20,19 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-add_action('woocommerce_after_single_product_summary', 'wooattr_add');
+
+//adding stylesheets and scripts
+function woospa_scripts()
+{
+    wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css');
+    wp_enqueue_script('script-name', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array(), '1.0.0', true);
+}
+
+add_action('wp_enqueue_scripts', 'woospa_scripts');
 
 
+
+//woo attribut function
 function wooattr_add()
 {
     require_once('main.php');
@@ -35,106 +45,75 @@ function wooattr_add()
 
     // getting attributes and looping all available attribute
     $attributes = $product->get_attributes();
-    foreach ($attributes as $attribute) :
+
+    //for each loop starts
+    foreach ($attributes as $attribute) {
         $attribute_name = $attribute->get_taxonomy(); // The taxonomy slug name
         $attribute_terms = $attribute->get_terms(); // The terms
         $attribute_slugs = $attribute->get_slugs(); // The term slugs
         $attribute_data = $attribute->get_data();
 
         // testing pre-formatted output
-        echo '<pre>';
-        echo 'data';
-        print_r($attribute_data); //
+        // echo '<pre>';
+        // echo 'data ';
 
+        // print_r($attribute_data); //
         $attribute_name_get = ($attribute_data['name']);
-        $attr_prefix_remove = explode('pa_', $attribute_name_get); //
-        echo $attr_prefix_remove;
-        echo 'attr';
+        $attr_prefix_remove = explode('pa_', $attribute_name_get);
+        $attr_after_explode = $attr_prefix_remove[1];
+        echo $attr_after_explode;
 
-        echo 'slugs';
-        print_r($attribute_slugs);
+
+        // echo ' attr ';
+
+        // echo 'slugs ';
+        // print_r($attribute_slugs);
         // echo 'name ';
         // print_r($attribute_name, ' ');
 
-        // echo 'terms ';
-        // print_r($attribute_terms);
+        echo ' terms ';
+        print_r($attribute_terms);
         echo '</pre>';
-    endforeach;
-}
+
+        foreach ($attribute_terms as $value) {
+            $li_item = '';
+            echo $value->name;
+        }
 
 
-function woospa_scripts()
-{
-    wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css');
-    wp_enqueue_script('script-name', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array(), '1.0.0', true);
-}
 
-add_action('wp_enqueue_scripts', 'woospa_scripts');
 
 
 ?>
 
 
+        <!-- html content starts -->
+        <div class="jumbotron">
+            <div class="row w-100">
+                <div class="col-md-3">
+                    <div class="card border-info mx-sm-1 p-3">
+                        <div class="text-info text-center mt-3">
+                            <h4><?php echo ($attr_after_explode); ?></h4>
+                        </div>
+                        <div class="text-info text-center mt-2">
+                            <ul>
+                                <li><?php echo $value->name; ?></li>
 
-<!-- html content starts -->
-<div class="jumbotron">
-    <div class="row w-100">
-        <div class="col-md-3">
-            <div class="card border-info mx-sm-1 p-3">
-                <div class="text-info text-center mt-3">
-                    <h4>Attribute Name</h4>
-                </div>
-                <div class="text-info text-center mt-2">
-                    <ul>
-                        <li>value</li>
-                        <li>value</li>
-                        <li>value</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-info mx-sm-1 p-3">
-                <div class="text-info text-center mt-3">
-                    <h4>Attribute Name</h4>
-                </div>
-                <div class="text-info text-center mt-2">
-                    <ul>
-                        <li>value</li>
-                        <li>value</li>
-                        <li>value</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-info mx-sm-1 p-3">
-                <div class="text-info text-center mt-3">
-                    <h4>Attribute Name</h4>
-                </div>
-                <div class="text-info text-center mt-2">
-                    <ul>
-                        <li>value</li>
-                        <li>value</li>
-                        <li>value</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-info mx-sm-1 p-3">
-                <div class="text-info text-center mt-3">
-                    <h4>Attribute Name</h4>
-                </div>
-                <div class="text-info text-center mt-2">
-                    <ul>
-                        <li>value</li>
-                        <li>value</li>
-                        <li>value</li>
-                    </ul>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
-</div>
+<?php
+
+
+    }
+}
+
+
+add_action('woocommerce_after_single_product_summary', 'wooattr_add');
+
+
+?>
