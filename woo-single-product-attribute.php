@@ -22,8 +22,9 @@ if (!defined('ABSPATH')) {
 //adding stylesheets and scripts
 function woospa_scripts()
 {
-    wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css');
-    wp_enqueue_script('script-name', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array(), '1.0.0', true);
+    wp_enqueue_style('bootstrap-min', plugin_dir_url(__FILE__) . 'css/bootstrap-min.css');
+    wp_enqueue_style('custom', plugin_dir_url(__FILE__) . 'style.css');
+    wp_enqueue_script('bootstrap-min', plugin_dir_url(__FILE__) . 'js/bootstrap-min.js', array(), '1.0.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'woospa_scripts');
@@ -38,11 +39,12 @@ function wooattr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        $paren_cat_id = $cat->term_id;
+        // $parent_cat_id = $cat->term_id;
+        $parent_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
-    if ($paren_cat_id == 307) {
+    if ($parent_cat_id == 28) {
 
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
@@ -106,6 +108,7 @@ function wooattr_add()
         </div>
         </div>
 <?php
+
 
     }
 }
