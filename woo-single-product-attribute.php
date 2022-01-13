@@ -42,7 +42,7 @@ function wooattr_add()
     }
 
     // show all thing in a specific category
-    if ($paren_cat_id == 28) {
+    if ($paren_cat_id == 307) {
 
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
