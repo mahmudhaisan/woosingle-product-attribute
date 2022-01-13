@@ -4,7 +4,7 @@
  * Plugin Name: Woo Single Product Attribute
  * Plugin URI: http://mahmudhaisan.com/
  * Description: Woo Single Product Attribute
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Mahmud haisan
  * Author URI: http://mahmudhaisan.com/
  * Developer: Mahmud Haisan
@@ -50,8 +50,8 @@ function wooattr_add()
         $attributes = $product->get_attributes();
 
         // printing html elements before loop 
-        echo '<div class="jumbotron">';
-        echo '<div class="row w-100">';
+        echo '<div class="container">';
+        echo '<div class="row">';
 
         //for each loop starts to get all attribute      
         foreach ($attributes as $attribute) {
@@ -75,11 +75,12 @@ function wooattr_add()
                 $attr_with_explode = ucfirst($attr_prefix_remove[1]);
             }
 
-            echo '<div class="col-md-3">'; ?>
+            echo '<div class="col-md-3 bg-light mb-3 column-shape">'; ?>
 
-            <div class="card border-info mx-sm-1 p-3">
-                <div class="text-info text-center mt-3">
-                    <h4><?php
+            <div class="mx-sm-1">
+                <div class="p-3 mb-2 bg-dark">
+                    <h4 class="text-white">
+                        <?php
 
                         if (!empty($attr_without_explode)) {
                             echo $attr_without_explode;
@@ -89,14 +90,14 @@ function wooattr_add()
                         ?>
                     </h4>
                 </div>
-                <div class="text-info text-center mt-2">
+                <div class="">
 
                     <?php
                     // adding (array) before foreach array to handle null values                    
                     foreach ((array) $attribute_terms as $value) {
                     ?>
-                        <ul>
-                            <?php echo $value->name; ?>
+                        <ul class="m-0">
+                            <li class="list-group-item bg-danger mb-2 text-white"> <?php echo $value->name; ?> </li>
                         </ul>
                     <?php } ?>
                 </div>
@@ -114,6 +115,6 @@ function wooattr_add()
 }
 
 
-add_action('woocommerce_after_single_product_summary', 'wooattr_add');
+add_action('woocommerce_after_single_product_summary', 'wooattr_add', 6);
 
 ?>
