@@ -38,7 +38,7 @@ function wooattr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        $paren_cat_id = $cat->parent;
+        $paren_cat_id = $cat->term_id;
     }
 
     // show all thing in a specific category
