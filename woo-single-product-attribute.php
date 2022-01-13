@@ -34,7 +34,7 @@ function wooattr_add()
     global $product;
 
     //getting products categories
-    $cats = get_the_terms($product->ID, 'product_cat');
+    $cats = get_the_terms($product->get_ID(), 'product_cat');
 
     //getting products parent category id
     foreach ($cats as $cat) {
@@ -60,10 +60,18 @@ function wooattr_add()
             $attribute_name_get = ($attribute_data['name']);
             $attr_prefix_remove = explode('pa_', $attribute_name_get);
 
-            // 0 index showing the empty array if there it not find pa_ to explode
-            $attr_without_explode = $attr_prefix_remove[0];
-            // 1 index showing the output after explode pa_ from db
-            $attr_with_explode = $attr_prefix_remove[1];
+
+            //checking whether 0 index is available or not
+            if (isset($attr_prefix_remove[0])) {
+                // 0 index showing the empty array if there it not find pa_ to explode
+                $attr_with_explode = ucfirst($attr_prefix_remove[0]);
+            }
+
+            //checking whether 1 index is available or not
+            if (isset($attr_prefix_remove[1])) {
+                // 1 index showing the output after explode pa_ from db
+                $attr_with_explode = ucfirst($attr_prefix_remove[1]);
+            }
 
             echo '<div class="col-md-3">'; ?>
 
@@ -80,7 +88,11 @@ function wooattr_add()
                     </h4>
                 </div>
                 <div class="text-info text-center mt-2">
-                    <?php foreach ($attribute_terms as $value) { ?>
+
+                    <?php
+                    // adding (array) before foreach array to handle null values                    
+                    foreach ((array) $attribute_terms as $value) {
+                    ?>
                         <ul>
                             <?php echo $value->name; ?>
                         </ul>
