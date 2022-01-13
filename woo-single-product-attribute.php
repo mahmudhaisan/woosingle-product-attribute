@@ -35,36 +35,49 @@ function wooattr_add()
 
     //getting products categories
     $cats = get_the_terms($product->ID, 'product_cat');
+
     //getting products parent category id
     foreach ($cats as $cat) {
-
         $paren_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
     if ($paren_cat_id == 28) {
+
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
 
+        // printing html elements before loop 
         echo '<div class="jumbotron">';
         echo '<div class="row w-100">';
 
-
-        //for each loop starts        
+        //for each loop starts to get all attribute      
         foreach ($attributes as $attribute) {
-
             $attribute_terms = $attribute->get_terms();
             $attribute_data = $attribute->get_data();
 
+            // getting attribue name 
             $attribute_name_get = ($attribute_data['name']);
             $attr_prefix_remove = explode('pa_', $attribute_name_get);
-            $attr_after_explode = $attr_prefix_remove[1];
+
+            // 0 index showing the empty array if there it not find pa_ to explode
+            $attr_without_explode = $attr_prefix_remove[0];
+            // 1 index showing the output after explode pa_ from db
+            $attr_with_explode = $attr_prefix_remove[1];
 
             echo '<div class="col-md-3">'; ?>
 
             <div class="card border-info mx-sm-1 p-3">
                 <div class="text-info text-center mt-3">
-                    <h4><?php echo ($attr_after_explode); ?></h4>
+                    <h4><?php
+
+                        if (!empty($attr_without_explode)) {
+                            echo $attr_without_explode;
+                        } else {
+                            echo $attr_with_explode;
+                        }
+                        ?>
+                    </h4>
                 </div>
                 <div class="text-info text-center mt-2">
                     <?php foreach ($attribute_terms as $value) { ?>
@@ -74,6 +87,7 @@ function wooattr_add()
                     <?php } ?>
                 </div>
             </div>
+
             </div>
         <?php } ?>
 
