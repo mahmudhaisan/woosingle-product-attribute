@@ -80,10 +80,10 @@ function wooattr_add()
             echo '<div class="col-md-6 mb-3 pr-5" id="column-shape">'; ?>
 
             <div>
-                <div class="row bg-info border-around">
+                <div class="row bg-info border-around justify-content-center">
                     <div class="col-md-3 p-3 align-middle">
                         <div class="mb-2">
-                            <h4 class="text-white h4">icon</h4>
+                            <h4 class="text-white h4 p-3">icon</h4>
                         </div>
                     </div>
 
