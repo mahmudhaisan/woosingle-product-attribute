@@ -20,14 +20,16 @@ if (!defined('ABSPATH')) {
 }
 
 //adding stylesheets and scripts
-function woospa_scripts()
+function woospa_attr_scripts()
 {
     wp_enqueue_style('bootstrap-min', plugin_dir_url(__FILE__) . 'css/bootstrap-min.css');
-    wp_enqueue_style('custom', plugin_dir_url(__FILE__) . 'style.css');
+    wp_enqueue_style('custom', plugin_dir_url(__FILE__) . 'css/style.css');
     wp_enqueue_script('bootstrap-min', plugin_dir_url(__FILE__) . 'js/bootstrap-min.js', array(), '1.0.0', true);
 }
 
-add_action('wp_enqueue_scripts', 'woospa_scripts');
+add_action('wp_enqueue_scripts', 'woospa_attr_scripts');
+
+
 //woo attribut function
 function wooattr_add()
 {
@@ -39,8 +41,8 @@ function wooattr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        $parent_cat_id = $cat->term_id;
-        // $parent_cat_id = $cat->parent;
+        // $parent_cat_id = $cat->term_id;
+        $parent_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
@@ -75,33 +77,45 @@ function wooattr_add()
                 $attr_with_explode = ucfirst($attr_prefix_remove[1]);
             }
 
-            echo '<div class="col-md-3 bg-light mb-3 column-shape">'; ?>
+            echo '<div class="col-md-6 mb-3 pr-5" id="column-shape">'; ?>
 
-            <div class="mx-sm-1">
-                <div class="p-3 mb-2 bg-dark">
-                    <h4 class="text-white">
-                        <?php
+            <div>
+                <div class="row bg-info border-around">
+                    <div class="col-md-3 p-3 align-middle">
+                        <div class="mb-2">
+                            <h4 class="text-white h4">icon</h4>
+                        </div>
+                    </div>
 
-                        if (!empty($attr_without_explode)) {
-                            echo $attr_without_explode;
-                        } else {
-                            echo $attr_with_explode;
-                        }
-                        ?>
-                    </h4>
+                    <div class="col-md-9 bg-dark p-3 border-padding-right">
+                        <div class="text-white attr-title h4">
+                            <?php
+                            if (!empty($attr_without_explode)) {
+                                echo $attr_without_explode;
+                            } else {
+                                echo $attr_with_explode;
+                            }
+                            ?>
+                        </div>
+
+                        <div class="">
+
+                            <?php
+                            // adding (array) before foreach array to handle null values                    
+                            foreach ((array) $attribute_terms as $value) {
+                            ?>
+                                <ul class="m-0 list-unstyled">
+                                    <li class="li-items text-white h5"> <?php echo $value->name; ?> </li>
+                                </ul>
+                            <?php } ?>
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="">
 
-                    <?php
-                    // adding (array) before foreach array to handle null values                    
-                    foreach ((array) $attribute_terms as $value) {
-                    ?>
-                        <ul class="m-0">
-                            <li class="list-group-item bg-danger mb-2 text-white"> <?php echo $value->name; ?> </li>
-                        </ul>
-                    <?php } ?>
-                </div>
             </div>
+
 
             </div>
         <?php } ?>

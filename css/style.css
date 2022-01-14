@@ -1,0 +1,14 @@
+.border-around {
+
+    border-radius: 65px;
+}
+
+div#column-shape{
+
+    border-radius: 65px;
+}
+
+.border-padding-right {
+    /* border-radius: 50px 0 50px 40px 50px; */
+    border-radius: 0 50px 50px 0;
+}
