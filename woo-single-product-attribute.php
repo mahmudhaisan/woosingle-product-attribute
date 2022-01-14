@@ -9,7 +9,7 @@
  * Author URI: http://mahmudhaisan.com/
  * Developer: Mahmud Haisan
  * Developer URI: http://mahmudhaisan.com/
- * Text Domain: woospa
+ * Text Domain: woospa195attr
  * Domain Path: /languages
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -20,18 +20,19 @@ if (!defined('ABSPATH')) {
 }
 
 //adding stylesheets and scripts
-function woospa_attr_scripts()
+function woospa195attr_scripts()
 {
     wp_enqueue_style('bootstrap-min', plugin_dir_url(__FILE__) . 'css/bootstrap-min.css');
     wp_enqueue_style('custom', plugin_dir_url(__FILE__) . 'css/style.css');
+    // wp_enqueue_style('fontawesome', plugin_dir_url(__FILE__) . 'css/fontawesome.css');
     wp_enqueue_script('bootstrap-min', plugin_dir_url(__FILE__) . 'js/bootstrap-min.js', array(), '1.0.0', true);
 }
 
-add_action('wp_enqueue_scripts', 'woospa_attr_scripts');
+add_action('wp_enqueue_scripts', 'woospa195attr_scripts');
 
 
 //woo attribut function
-function wooattr_add()
+function woospa195attr_add()
 {
     // declaring global $product
     global $product;
@@ -68,7 +69,7 @@ function wooattr_add()
             //checking whether 0 index is available or not
             if (isset($attr_prefix_remove[0])) {
                 // 0 index showing the empty array if there it not find pa_ to explode
-                $attr_with_explode = ucfirst($attr_prefix_remove[0]);
+                $attr_with_explode = ucwords($attr_prefix_remove[0]);
             }
 
             //checking whether 1 index is available or not
@@ -80,15 +81,22 @@ function wooattr_add()
             echo '<div class="col-md-6 mb-3 pr-5" id="column-shape">'; ?>
 
             <div>
-                <div class="row bg-info border-around justify-content-center">
+                <div class="row bg-primary border-around justify-content-center">
                     <div class="col-md-3 p-3 align-middle">
                         <div class="mb-2">
-                            <h4 class="text-white h4 p-3">icon</h4>
+                            <h4 class="text-white h4 p-3">
+                                <?php
+                                if (!empty($attr_without_explode)) {
+                                    echo $attr_without_explode;
+                                } else {
+                                    echo $attr_with_explode;
+                                }
+                                ?></h4>
                         </div>
                     </div>
 
                     <div class="col-md-9 bg-dark p-3 border-padding-right">
-                        <div class="text-white attr-title h4">
+                        <div class="text-primary attr-title h4 font-weight-bold">
                             <?php
                             if (!empty($attr_without_explode)) {
                                 echo $attr_without_explode;
@@ -129,6 +137,6 @@ function wooattr_add()
 }
 
 
-add_action('woocommerce_after_single_product_summary', 'wooattr_add', 6);
+add_action('woocommerce_after_single_product_summary', 'woospa195attr_add', 6);
 
 ?>
