@@ -42,12 +42,12 @@ function woospa195attr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        // $parent_cat_id = $cat->term_id;
-        $parent_cat_id = $cat->parent;
+        $parent_cat_id = $cat->term_id;
+        // $parent_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
-    if ($parent_cat_id == 28) {
+    if ($parent_cat_id == 307) {
 
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
