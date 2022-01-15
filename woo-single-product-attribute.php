@@ -4,7 +4,7 @@
  * Plugin Name: Woo Single Product Attribute
  * Plugin URI: http://mahmudhaisan.com/
  * Description: Woo Single Product Attribute
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Mahmud haisan
  * Author URI: http://mahmudhaisan.com/
  * Developer: Mahmud Haisan
@@ -42,12 +42,12 @@ function woospa195attr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        $parent_cat_id = $cat->term_id;
-        // $parent_cat_id = $cat->parent;
+        // $parent_cat_id = $cat->term_id;
+        $parent_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
-    if ($parent_cat_id == 307) {
+    if ($parent_cat_id == 28) {
 
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
@@ -78,13 +78,12 @@ function woospa195attr_add()
                 $attr_with_explode = ucfirst($attr_prefix_remove[1]);
             }
 
-            echo '<div class="col-md-6 mb-3 pr-5" id="column-shape">'; ?>
-
+            echo '<div class="col-md-6 mb-3 padding-right">'; ?>
             <div>
-                <div class="row bg-primary border-around justify-content-center">
-                    <div class="col-md-3 p-3 align-middle">
+                <div class="row bg-info border-around justify-content-center">
+                    <div class="col-md-3 col-sm-12 p-3">
                         <div class="mb-2">
-                            <h4 class="text-white h4 p-3">
+                            <h4 class="text-white h4 icon-padding">
                                 <?php
                                 if (!empty($attr_without_explode)) {
                                     echo $attr_without_explode;
@@ -95,8 +94,8 @@ function woospa195attr_add()
                         </div>
                     </div>
 
-                    <div class="col-md-9 bg-dark p-3 border-padding-right">
-                        <div class="text-primary attr-title h4 font-weight-bold">
+                    <div class="col-md-9 bg-dark value-padding border-padding-right">
+                        <!-- <div class="text-info attr-title h3 font-weight-bold">
                             <?php
                             if (!empty($attr_without_explode)) {
                                 echo $attr_without_explode;
@@ -104,7 +103,7 @@ function woospa195attr_add()
                                 echo $attr_with_explode;
                             }
                             ?>
-                        </div>
+                        </div> -->
 
                         <div class="">
 

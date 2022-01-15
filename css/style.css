@@ -3,12 +3,46 @@
     border-radius: 65px;
 }
 
-div#column-shape{
-
-    border-radius: 65px;
+.padding-right{
+    padding-right: 3rem;
 }
+
 
 .border-padding-right {
     /* border-radius: 50px 0 50px 40px 50px; */
     border-radius: 0 50px 50px 0;
 }
+
+.icon-padding{
+    padding: 1.5rem;
+}
+.value-padding{
+    padding: 2.5rem;
+}
+
+
+
+@media  (max-width: 768px) {
+    .border-around{
+        border-radius: 0;
+    }
+
+    .padding-right{
+        padding-right: 0;
+        padding:0 30px 0 30px;
+    }
+    
+
+    .border-padding-right {
+        border-radius: 0 0 0 0;
+    }    
+
+    .icon-padding{
+        padding: 0;
+    }
+
+    .value-padding{
+        padding: 1.5rem;
+    }
+
+  }
