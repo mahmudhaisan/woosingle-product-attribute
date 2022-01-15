@@ -42,12 +42,12 @@ function woospa195attr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        // $parent_cat_id = $cat->term_id;
-        $parent_cat_id = $cat->parent;
+        $parent_cat_id = $cat->term_id;
+        // $parent_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
-    if ($parent_cat_id == 28) {
+    if ($parent_cat_id == 307) {
 
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
@@ -80,21 +80,24 @@ function woospa195attr_add()
 
             echo '<div class="col-md-6 mb-3 padding-right">'; ?>
             <div>
-                <div class="row bg-info border-around justify-content-center">
-                    <div class="col-md-3 col-sm-12 p-3">
+                <div class="row bg-info border-around">
+                    <div class="col-md-6 p-3">
+
                         <div class="mb-2">
-                            <h4 class="text-white h4 icon-padding">
+                            <h4 class="text-white h5 font-weight-bold text-center">
                                 <?php
+
                                 if (!empty($attr_without_explode)) {
                                     echo $attr_without_explode;
                                 } else {
                                     echo $attr_with_explode;
                                 }
+
                                 ?></h4>
                         </div>
                     </div>
 
-                    <div class="col-md-9 bg-dark value-padding border-padding-right">
+                    <div class="col-md-6 bg-dark value-padding border-padding-right p-3">
                         <!-- <div class="text-info attr-title h3 font-weight-bold">
                             <?php
                             if (!empty($attr_without_explode)) {
@@ -112,7 +115,7 @@ function woospa195attr_add()
                             foreach ((array) $attribute_terms as $value) {
                             ?>
                                 <ul class="m-0 list-unstyled">
-                                    <li class="li-items text-white h5"> <?php echo $value->name; ?> </li>
+                                    <li class="li-items text-white h5 text-cente"> <?php echo $value->name; ?> </li>
                                 </ul>
                             <?php } ?>
                         </div>
