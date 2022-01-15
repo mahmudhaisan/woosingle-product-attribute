@@ -42,12 +42,12 @@ function woospa195attr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        // $parent_cat_id = $cat->term_id;
-        $parent_cat_id = $cat->parent;
+        $parent_cat_id = $cat->term_id;
+        // $parent_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
-    if ($parent_cat_id == 28) {
+    if ($parent_cat_id == 307) {
 
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
@@ -65,17 +65,24 @@ function woospa195attr_add()
             $attribute_name_get = ($attribute_data['name']);
             $attr_prefix_remove = explode('pa_', $attribute_name_get);
 
+            $arr_attr_with_hyphens_zero = $attr_prefix_remove[0];
+            $arr_attr_with_hyphens_one = $attr_prefix_remove[1];
+
+            $final_attr_zero = str_replace('-', ' ', $arr_attr_with_hyphens_zero);
+            $final_attr_one = str_replace('-', ' ', $arr_attr_with_hyphens_one);
+
+
 
             //checking whether 0 index is available or not
-            if (isset($attr_prefix_remove[0])) {
+            if (isset($arr_attr_with_hyphens_zero)) {
                 // 0 index showing the empty array if there it not find pa_ to explode
-                $attr_with_explode = ucwords($attr_prefix_remove[0]);
+                $attr_with_explode = ucwords($final_attr_zero);
             }
 
             //checking whether 1 index is available or not
-            if (isset($attr_prefix_remove[1])) {
+            if (isset($arr_attr_with_hyphens_one)) {
                 // 1 index showing the output after explode pa_ from db
-                $attr_with_explode = ucfirst($attr_prefix_remove[1]);
+                $attr_with_explode = ucwords($final_attr_one);
             }
 
             echo '<div class="col-md-6 mb-3 padding-right">'; ?>
@@ -115,7 +122,7 @@ function woospa195attr_add()
                             foreach ((array) $attribute_terms as $value) {
                             ?>
                                 <ul class="m-0 list-unstyled">
-                                    <li class="li-items text-white h5 text-center"> <?php echo $value->name; ?> </li>
+                                    <li class="li-items text-white h5 text-center"> <?php echo ucfirst($value->name); ?> </li>
                                 </ul>
                             <?php } ?>
                         </div>
