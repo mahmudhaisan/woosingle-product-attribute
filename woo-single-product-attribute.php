@@ -42,12 +42,12 @@ function woospa195attr_add()
 
     //getting products parent category id
     foreach ($cats as $cat) {
-        $parent_cat_id = $cat->term_id;
-        // $parent_cat_id = $cat->parent;
+        // $parent_cat_id = $cat->term_id;
+        $parent_cat_id = $cat->parent;
     }
 
     // show all thing in a specific category
-    if ($parent_cat_id == 307) {
+    if ($parent_cat_id == 28) {
 
         // getting attributes and looping all available attribute
         $attributes = $product->get_attributes();
@@ -115,7 +115,7 @@ function woospa195attr_add()
                             foreach ((array) $attribute_terms as $value) {
                             ?>
                                 <ul class="m-0 list-unstyled">
-                                    <li class="li-items text-white h5 text-cente"> <?php echo $value->name; ?> </li>
+                                    <li class="li-items text-white h5 text-center"> <?php echo $value->name; ?> </li>
                                 </ul>
                             <?php } ?>
                         </div>
